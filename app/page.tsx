@@ -203,7 +203,9 @@ export default function Home() {
             <p className="eyebrow"><LocalizedText mode={mode} value={uiText('publicationsEyebrow')} inline={mode === 'both'} /></p>
             <h2 id="publications-title"><LocalizedText mode={mode} value={uiText('publicationsTitle')} /></h2>
           </div>
-          <p className="section-description"><LocalizedText labeled={mode === 'both'} mode={mode} value={uiText('publicationsIntro')} /></p>
+          {academicContent.publications.length > 0 && (
+            <p className="section-description"><LocalizedText labeled={mode === 'both'} mode={mode} value={uiText('publicationsIntro')} /></p>
+          )}
         </div>
         {academicContent.publications.length > 0 ? (
           <div className="publication-list">
