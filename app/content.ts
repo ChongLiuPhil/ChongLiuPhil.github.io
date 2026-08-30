@@ -7,6 +7,8 @@ export type PublicationLink = {
 };
 
 export type Publication = {
+  id: string;
+  originalLanguage?: Language;
   year: string;
   featured: boolean;
   title: BilingualText;
@@ -16,6 +18,7 @@ export type Publication = {
 };
 
 export type TimelineItem = {
+  id: string;
   period: string;
   title: BilingualText;
   institution: BilingualText;
@@ -23,10 +26,11 @@ export type TimelineItem = {
 };
 
 export const academicContent = {
+  schemaVersion: 1,
   isSample: false,
   profile: {
     name: { zh: '刘崇', en: 'Chong Liu' },
-    role: { zh: 'Chong Liu · 英文名 John', en: 'English name · John' },
+    role: { zh: '哲学', en: 'Philosophy' },
     affiliation: null as BilingualText | null,
     statement: {
       zh: '关注知识如何成立、科学如何解释、语言如何指称，以及因果关系与意识如何塑造我们对世界的理解。',
@@ -44,6 +48,7 @@ export const academicContent = {
   },
   researchAreas: [
     {
+      id: 'epistemology',
       number: '01',
       title: { zh: '认识论', en: 'Epistemology' },
       description: {
@@ -53,6 +58,7 @@ export const academicContent = {
       keywords: { zh: '知识 · 证成 · 理性', en: 'Knowledge · Justification · Rationality' },
     },
     {
+      id: 'philosophy-of-science',
       number: '02',
       title: { zh: '科学哲学', en: 'Philosophy of Science' },
       description: {
@@ -62,6 +68,7 @@ export const academicContent = {
       keywords: { zh: '解释 · 理论 · 方法', en: 'Explanation · Theory · Method' },
     },
     {
+      id: 'philosophy-of-language',
       number: '03',
       title: { zh: '语言哲学', en: 'Philosophy of Language' },
       description: {
@@ -71,6 +78,7 @@ export const academicContent = {
       keywords: { zh: '意义 · 指称 · 语境', en: 'Meaning · Reference · Context' },
     },
     {
+      id: 'causation',
       number: '04',
       title: { zh: '因果关系', en: 'Causation' },
       description: {
@@ -80,6 +88,7 @@ export const academicContent = {
       keywords: { zh: '解释 · 规律 · 反事实', en: 'Explanation · Laws · Counterfactuals' },
     },
     {
+      id: 'consciousness',
       number: '05',
       title: { zh: '意识', en: 'Consciousness' },
       description: {

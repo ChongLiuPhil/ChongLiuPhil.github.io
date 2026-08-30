@@ -1,11 +1,97 @@
-import { academicContent, interfaceCopy, type BilingualText } from './content';
+'use client';
 
-function english(value: BilingualText) {
-  return value.en;
+import { useEffect, useSyncExternalStore } from 'react';
+import { academicContent, interfaceCopy, type BilingualText, type Language } from './content';
+
+type DisplayMode = Language | 'both';
+
+const DISPLAY_MODE_KEY = 'chong-liu-display-mode';
+const DISPLAY_MODE_EVENT = 'chong-liu-display-mode-change';
+
+function readDisplayMode(): DisplayMode {
+  const savedMode = window.localStorage.getItem(DISPLAY_MODE_KEY);
+  return savedMode === 'zh' || savedMode === 'both' ? savedMode : 'en';
+}
+
+function subscribeToDisplayMode(onStoreChange: () => void) {
+  window.addEventListener('storage', onStoreChange);
+  window.addEventListener(DISPLAY_MODE_EVENT, onStoreChange);
+  return () => {
+    window.removeEventListener('storage', onStoreChange);
+    window.removeEventListener(DISPLAY_MODE_EVENT, onStoreChange);
+  };
+}
+
+function storeDisplayMode(mode: DisplayMode) {
+  window.localStorage.setItem(DISPLAY_MODE_KEY, mode);
+  window.dispatchEvent(new Event(DISPLAY_MODE_EVENT));
+}
+
+type LocalizedTextProps = {
+  value: BilingualText;
+  mode: DisplayMode;
+  inline?: boolean;
+  labeled?: boolean;
+};
+
+function LocalizedText({ value, mode, inline = false, labeled = false }: LocalizedTextProps) {
+  if (mode === 'en') return <span lang="en">{value.en}</span>;
+  if (mode === 'zh') return <span lang="zh-CN">{value.zh}</span>;
+
+  return (
+    <span className={`localized-both${inline ? ' localized-inline' : ''}`}>
+      <span className="localized-language" lang="en">
+        {labeled && <span className="language-label">English</span>}
+        {value.en}
+      </span>
+      {inline && <span className="localized-divider" aria-hidden="true">/</span>}
+      <span className="localized-language localized-zh" lang="zh-CN">
+        {labeled && <span className="language-label">中文</span>}
+        {value.zh}
+      </span>
+    </span>
+  );
+}
+
+function ModeSwitcher({ mode, onChange }: { mode: DisplayMode; onChange: (mode: DisplayMode) => void }) {
+  const options: Array<{ value: DisplayMode; label: string; accessibleLabel: string }> = [
+    { value: 'en', label: 'English', accessibleLabel: 'Show English' },
+    { value: 'zh', label: '中文', accessibleLabel: '显示中文' },
+    { value: 'both', label: 'Both', accessibleLabel: 'Show English and Chinese' },
+  ];
+
+  return (
+    <div className="mode-switcher" role="group" aria-label="Language display mode">
+      {options.map((option) => (
+        <button
+          aria-label={option.accessibleLabel}
+          aria-pressed={mode === option.value}
+          className={mode === option.value ? 'active' : undefined}
+          key={option.value}
+          onClick={() => onChange(option.value)}
+          type="button"
+        >
+          {option.label}
+        </button>
+      ))}
+    </div>
+  );
+}
+
+function uiText(key: Exclude<keyof typeof interfaceCopy.en, 'nav' | 'checklist'>): BilingualText {
+  return {
+    en: interfaceCopy.en[key] as string,
+    zh: interfaceCopy.zh[key] as string,
+  };
+}
+
+function bibliographicMode(originalLanguage: Language | undefined, mode: DisplayMode): DisplayMode {
+  if (mode === 'both') return 'both';
+  return originalLanguage ?? mode;
 }
 
 export default function Home() {
-  const ui = interfaceCopy.en;
+  const mode = useSyncExternalStore<DisplayMode>(subscribeToDisplayMode, readDisplayMode, () => 'en');
   const profile = academicContent.profile;
   const hasContactLinks = Boolean(profile.email || profile.externalLinks.length);
   const hasExperience = academicContent.experience.length > 0;
@@ -13,58 +99,81 @@ export default function Home() {
   const credentialsNumber = hasExperience ? '04' : '03';
   const contactNumber = String(3 + Number(hasExperience) + Number(hasCredentials)).padStart(2, '0');
 
+  useEffect(() => {
+    document.documentElement.lang = mode === 'zh' ? 'zh-CN' : 'en';
+    document.documentElement.dataset.displayMode = mode;
+  }, [mode]);
+
+  const navigation = interfaceCopy.en.nav.map((item, index) => ({
+    href: item.href,
+    label: { en: item.label, zh: interfaceCopy.zh.nav[index].label },
+  }));
+
   return (
-    <main>
+    <main className={`language-mode-${mode}`}>
       <header className="site-header">
-        <a className="wordmark" href="#top" aria-label={english(profile.name)}>
-          {ui.wordmark}
+        <a className="wordmark" href="#top" aria-label="Chong Liu, 刘崇">
+          <LocalizedText mode={mode} value={profile.name} inline={mode === 'both'} />
         </a>
-        <nav className="desktop-nav" aria-label="Primary navigation">
-          {ui.nav.map((item) => <a key={item.href} href={item.href}>{item.label}</a>)}
+        <nav className="desktop-nav" aria-label={mode === 'zh' ? '主导航' : 'Primary navigation'}>
+          {navigation.map((item) => (
+            <a key={item.href} href={item.href}>
+              <LocalizedText mode={mode} value={item.label} inline={mode === 'both'} />
+            </a>
+          ))}
         </nav>
-        <span className="header-balance" aria-hidden="true" />
+        <ModeSwitcher mode={mode} onChange={storeDisplayMode} />
       </header>
 
-      <nav className="mobile-nav" aria-label="Mobile navigation">
-        {ui.nav.map((item) => <a key={item.href} href={item.href}>{item.label}</a>)}
+      <nav className="mobile-nav" aria-label={mode === 'zh' ? '移动端导航' : 'Mobile navigation'}>
+        {navigation.map((item) => (
+          <a key={item.href} href={item.href}>
+            <LocalizedText mode={mode} value={item.label} />
+          </a>
+        ))}
       </nav>
 
       <section className="hero" id="top" aria-labelledby="page-title">
         <div className="hero-meta">
           <span className="status-dot" aria-hidden="true" />
-          <span>{ui.sample}</span>
+          <span><LocalizedText mode={mode} value={uiText('sample')} inline={mode === 'both'} /></span>
         </div>
         <div className="hero-grid">
           <div>
-            <p className="role">{english(profile.role)}</p>
-            <h1 id="page-title">{english(profile.name)}</h1>
+            <p className="role"><LocalizedText mode="both" value={profile.role} inline /></p>
+            <h1 className="bilingual-hero-name" id="page-title"><LocalizedText mode="both" value={profile.name} inline /></h1>
           </div>
           <div className="hero-intro">
-            <p className="statement">{english(profile.statement)}</p>
-            <p className="bio">{english(profile.bio)}</p>
-            {profile.cvHref && <a className="text-link" href={profile.cvHref}>{ui.cv} ↗</a>}
+            <p className="statement"><LocalizedText labeled={mode === 'both'} mode={mode} value={profile.statement} /></p>
+            <p className="bio"><LocalizedText labeled={mode === 'both'} mode={mode} value={profile.bio} /></p>
+            {profile.cvHref && (
+              <a className="text-link" href={profile.cvHref}>
+                <LocalizedText mode={mode} value={uiText('cv')} inline={mode === 'both'} /> ↗
+              </a>
+            )}
           </div>
         </div>
         <a className="scroll-cue" href="#research">
-          <span>{ui.scroll}</span><span aria-hidden="true">↓</span>
+          <span><LocalizedText mode={mode} value={uiText('scroll')} inline={mode === 'both'} /></span>
+          <span aria-hidden="true">↓</span>
         </a>
       </section>
 
       <section className="section research-section" id="research" aria-labelledby="research-title">
         <p className="section-number">01</p>
         <div className="section-heading">
-          <p className="eyebrow">{ui.researchEyebrow}</p>
-          <h2 id="research-title">{ui.researchTitle}</h2>
+          <p className="eyebrow"><LocalizedText mode={mode} value={uiText('researchEyebrow')} inline={mode === 'both'} /></p>
+          <h2 id="research-title"><LocalizedText mode={mode} value={uiText('researchTitle')} /></h2>
         </div>
         <ol className="research-list">
           {academicContent.researchAreas.map((area) => (
-            <li key={area.number}>
+            <li id={`area-${area.id}`} key={area.id}>
               <div className="list-topline">
                 <span>{area.number}</span><span aria-hidden="true">↗</span>
               </div>
-              <h3>{english(area.title)}</h3>
-              <p>{english(area.description)}</p>
-              <small>{english(area.keywords)}</small>
+              <h3><LocalizedText mode={mode} value={area.title} inline={mode === 'both'} /></h3>
+              <p><LocalizedText labeled={mode === 'both'} mode={mode} value={area.description} /></p>
+              <small><LocalizedText mode={mode} value={area.keywords} /></small>
             </li>
           ))}
         </ol>
@@ -74,29 +183,29 @@ export default function Home() {
         <div className="section-intro">
           <p className="section-number">02</p>
           <div className="section-heading">
-            <p className="eyebrow">{ui.publicationsEyebrow}</p>
-            <h2 id="publications-title">{ui.publicationsTitle}</h2>
+            <p className="eyebrow"><LocalizedText mode={mode} value={uiText('publicationsEyebrow')} inline={mode === 'both'} /></p>
+            <h2 id="publications-title"><LocalizedText mode={mode} value={uiText('publicationsTitle')} /></h2>
           </div>
-          <p className="section-description">{ui.publicationsIntro}</p>
+          <p className="section-description"><LocalizedText labeled={mode === 'both'} mode={mode} value={uiText('publicationsIntro')} /></p>
         </div>
         {academicContent.publications.length > 0 ? (
           <div className="publication-list">
-            {academicContent.publications.map((publication, index) => (
-              <article className="publication" key={`${publication.year}-${index}`}>
+            {academicContent.publications.map((publication) => (
+              <article className="publication" id={`publication-${publication.id}`} key={publication.id}>
                 <div className="publication-meta">
                   <span>{publication.year}</span>
-                  {publication.featured && <span className="badge">{ui.featured}</span>}
+                  {publication.featured && <span className="badge"><LocalizedText mode={mode} value={uiText('featured')} /></span>}
                 </div>
                 <div>
-                  <h3>{english(publication.title)}</h3>
+                  <h3><LocalizedText mode={bibliographicMode(publication.originalLanguage, mode)} value={publication.title} /></h3>
                   <p className="authors">{publication.authors}</p>
-                  <p className="venue">{english(publication.venue)}</p>
+                  <p className="venue"><LocalizedText mode={bibliographicMode(publication.originalLanguage, mode)} value={publication.venue} /></p>
                 </div>
                 {publication.links.length > 0 && (
                   <div className="publication-links">
                     {publication.links.map((link) => (
                       <a href={link.href} key={link.href} rel="noreferrer" target="_blank">
-                        {english(link.label)} ↗
+                        <LocalizedText mode={mode} value={link.label} inline={mode === 'both'} /> ↗
                       </a>
                     ))}
                   </div>
@@ -105,7 +214,7 @@ export default function Home() {
             ))}
           </div>
         ) : (
-          <p className="publication-empty">{ui.publicationsPending}</p>
+          <p className="publication-empty"><LocalizedText labeled={mode === 'both'} mode={mode} value={uiText('publicationsPending')} /></p>
         )}
       </section>
 
@@ -114,18 +223,18 @@ export default function Home() {
           <div className="section-intro compact-intro">
             <p className="section-number">03</p>
             <div className="section-heading">
-              <p className="eyebrow">{ui.experienceEyebrow}</p>
-              <h2 id="experience-title">{ui.experienceTitle}</h2>
+              <p className="eyebrow"><LocalizedText mode={mode} value={uiText('experienceEyebrow')} inline={mode === 'both'} /></p>
+              <h2 id="experience-title"><LocalizedText mode={mode} value={uiText('experienceTitle')} /></h2>
             </div>
           </div>
           <div className="timeline">
-            {academicContent.experience.map((item, index) => (
-              <article className="timeline-item" key={`${item.period}-${index}`}>
+            {academicContent.experience.map((item) => (
+              <article className="timeline-item" id={`experience-${item.id}`} key={item.id}>
                 <span className="timeline-period">{item.period}</span>
                 <div>
-                  <h3>{english(item.title)}</h3>
-                  <p>{english(item.institution)}</p>
-                  {item.detail && <small>{english(item.detail)}</small>}
+                  <h3><LocalizedText mode={mode} value={item.title} /></h3>
+                  <p><LocalizedText mode={mode} value={item.institution} /></p>
+                  {item.detail && <small><LocalizedText labeled={mode === 'both'} mode={mode} value={item.detail} /></small>}
                 </div>
               </article>
             ))}
@@ -138,21 +247,21 @@ export default function Home() {
           <div className="section-intro compact-intro">
             <p className="section-number">{credentialsNumber}</p>
             <div className="section-heading">
-              <p className="eyebrow">{ui.educationEyebrow}</p>
-              <h2 id="credentials-title">{ui.educationTitle}</h2>
+              <p className="eyebrow"><LocalizedText mode={mode} value={uiText('educationEyebrow')} inline={mode === 'both'} /></p>
+              <h2 id="credentials-title"><LocalizedText mode={mode} value={uiText('educationTitle')} /></h2>
             </div>
           </div>
           <div className="credentials-grid">
             {academicContent.education.length > 0 && (
               <div>
-                <h3 className="column-label">{ui.educationLabel}</h3>
-                {academicContent.education.map((item, index) => (
-                  <article className="credential-item" key={`${item.period}-${index}`}>
+                <h3 className="column-label"><LocalizedText mode={mode} value={uiText('educationLabel')} inline={mode === 'both'} /></h3>
+                {academicContent.education.map((item) => (
+                  <article className="credential-item" id={`education-${item.id}`} key={item.id}>
                     <span>{item.period}</span>
                     <div>
-                      <h4>{english(item.title)}</h4>
-                      <p>{english(item.institution)}</p>
-                      {item.detail && <small>{english(item.detail)}</small>}
+                      <h4><LocalizedText mode={mode} value={item.title} /></h4>
+                      <p><LocalizedText mode={mode} value={item.institution} /></p>
+                      {item.detail && <small><LocalizedText labeled={mode === 'both'} mode={mode} value={item.detail} /></small>}
                     </div>
                   </article>
                 ))}
@@ -160,11 +269,11 @@ export default function Home() {
             )}
             {academicContent.honors.length > 0 && (
               <div>
-                <h3 className="column-label">{ui.honorsLabel}</h3>
+                <h3 className="column-label"><LocalizedText mode={mode} value={uiText('honorsLabel')} inline={mode === 'both'} /></h3>
                 {academicContent.honors.map((honor, index) => (
                   <article className="credential-item" key={`${honor.year}-${index}`}>
                     <span>{honor.year}</span>
-                    <div><h4>{english(honor.title)}</h4></div>
+                    <div><h4><LocalizedText mode={mode} value={honor.title} /></h4></div>
                   </article>
                 ))}
               </div>
@@ -174,10 +283,10 @@ export default function Home() {
       )}
 
       <section className="contact-section" id="contact" aria-labelledby="contact-title">
-        <p className="eyebrow">{contactNumber} · {ui.contactEyebrow}</p>
-        <h2 id="contact-title">{ui.contactTitle}</h2>
+        <p className="eyebrow">{contactNumber} · <LocalizedText mode={mode} value={uiText('contactEyebrow')} inline={mode === 'both'} /></p>
+        <h2 id="contact-title"><LocalizedText mode={mode} value={uiText('contactTitle')} /></h2>
         <div className="contact-grid">
-          <p>{ui.contactBody}</p>
+          <p><LocalizedText labeled={mode === 'both'} mode={mode} value={uiText('contactBody')} /></p>
           {hasContactLinks && (
             <div className="contact-links">
               {profile.email && <a href={`mailto:${profile.email}`}>{profile.email} ↗</a>}
@@ -190,9 +299,9 @@ export default function Home() {
       </section>
 
       <footer>
-        <span>{ui.footer}</span>
-        <span>{ui.updated}</span>
-        <a href="#top">↑ Top</a>
+        <span><LocalizedText mode={mode} value={{ en: 'Chong Liu', zh: '刘崇' }} inline={mode === 'both'} /></span>
+        <span><LocalizedText mode={mode} value={uiText('updated')} inline={mode === 'both'} /></span>
+        <a href="#top">↑ <LocalizedText mode={mode} value={{ en: 'Top', zh: '顶部' }} /></a>
       </footer>
     </main>
   );
