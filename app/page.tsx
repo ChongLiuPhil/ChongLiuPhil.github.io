@@ -142,10 +142,27 @@ export default function Home() {
           <div>
             <p className="role"><LocalizedText mode="both" value={profile.role} inline /></p>
             <h1 className="bilingual-hero-name" id="page-title"><LocalizedText mode="both" value={profile.name} inline /></h1>
+            {hasContactLinks && (
+              <div className="hero-links" aria-label={mode === 'zh' ? '学术链接' : 'Academic links'}>
+                {profile.email && (
+                  <a href={`mailto:${profile.email}`}>
+                    <LocalizedText mode={mode} value={{ en: 'Email', zh: '邮箱' }} inline={mode === 'both'} /> ↗
+                  </a>
+                )}
+                {profile.externalLinks.map((link) => (
+                  <a href={link.href} key={link.href} rel="noreferrer" target="_blank">{link.label} ↗</a>
+                ))}
+              </div>
+            )}
           </div>
           <div className="hero-intro">
             <p className="statement"><LocalizedText labeled={mode === 'both'} mode={mode} value={profile.statement} /></p>
             <p className="bio"><LocalizedText labeled={mode === 'both'} mode={mode} value={profile.bio} /></p>
+            <blockquote className="hero-epigraph">
+              <p className="epigraph-original" lang="zh-CN">{profile.epigraph.zh}</p>
+              {mode !== 'zh' && <p className="epigraph-translation" lang="en">{profile.epigraph.en}</p>}
+              <cite><LocalizedText mode={mode} value={profile.epigraphSource} inline={mode === 'both'} /></cite>
+            </blockquote>
             {profile.cvHref && (
               <a className="text-link" href={profile.cvHref}>
                 <LocalizedText mode={mode} value={uiText('cv')} inline={mode === 'both'} /> ↗

@@ -40,6 +40,14 @@ export const academicContent = {
       zh: '刘崇的研究兴趣涵盖认识论、科学哲学、语言哲学、因果关系与意识，关注这些领域之间相互连接的基础问题。',
       en: 'Chong Liu’s interests span epistemology, philosophy of science, philosophy of language, causation, and consciousness, with attention to the foundational questions connecting these fields.',
     },
+    epigraph: {
+      zh: '桂棹兮兰桨，击空明兮溯流光。渺渺兮予怀，望美人兮天一方。',
+      en: 'With cassia oars and magnolia sweeps, I strike the lucent void and trace the streaming light. Far-reaching are my thoughts; I gaze toward the one I long for at the edge of the sky.',
+    },
+    epigraphSource: {
+      zh: '苏轼《前赤壁赋》',
+      en: 'Su Shi · Former Ode on the Red Cliffs',
+    },
     email: 'chong.liu.phil@outlook.com',
     cvHref: '',
     externalLinks: [
@@ -106,7 +114,7 @@ export const academicContent = {
 
 export const interfaceCopy = {
   zh: {
-    sample: '哲学研究 · 内容持续更新',
+    sample: '哲学 · 求真',
     wordmark: '刘崇',
     nav: [
       { label: '研究', href: '#research' },
@@ -138,7 +146,7 @@ export const interfaceCopy = {
     updated: '哲学研究',
   },
   en: {
-    sample: 'Philosophy · Research in progress',
+    sample: 'Philosophy · In pursuit of truth',
     wordmark: 'Chong Liu',
     nav: [
       { label: 'Research', href: '#research' },

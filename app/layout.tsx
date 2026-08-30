@@ -12,13 +12,13 @@ export const metadata: Metadata = {
     type: 'website',
     title: 'Chong Liu 刘崇 — Philosophy',
     description: 'Epistemology · Philosophy of Science · Philosophy of Language · Causation · Consciousness',
-    images: [{ url: '/og.png', width: 1731, height: 909, alt: 'Chong Liu — Philosophy' }],
+    images: [{ url: '/og-v2.png', width: 1731, height: 909, alt: 'Chong Liu — Philosophy' }],
   },
   twitter: {
     card: 'summary_large_image',
     title: 'Chong Liu 刘崇 — Philosophy',
     description: 'Epistemology · Philosophy of Science · Philosophy of Language · Causation · Consciousness',
-    images: ['/og.png'],
+    images: ['/og-v2.png'],
   },
 };
 
