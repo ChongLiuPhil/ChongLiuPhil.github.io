@@ -142,6 +142,11 @@ export default function Home() {
           <div>
             <p className="role"><LocalizedText mode="both" value={profile.role} inline /></p>
             <h1 className="bilingual-hero-name" id="page-title"><LocalizedText mode="both" value={profile.name} inline /></h1>
+            <blockquote className="hero-epigraph">
+              <p className="epigraph-original" lang="zh-CN">{profile.epigraph.zh}</p>
+              {mode !== 'zh' && <p className="epigraph-translation" lang="en">{profile.epigraph.en}</p>}
+              <cite><LocalizedText mode={mode} value={profile.epigraphSource} inline={mode === 'both'} /></cite>
+            </blockquote>
             {hasContactLinks && (
               <div className="hero-links" aria-label={mode === 'zh' ? '学术链接' : 'Academic links'}>
                 {profile.email && (
@@ -157,12 +162,6 @@ export default function Home() {
           </div>
           <div className="hero-intro">
             <p className="statement"><LocalizedText labeled={mode === 'both'} mode={mode} value={profile.statement} /></p>
-            <blockquote className="hero-epigraph">
-              <p className="epigraph-label"><LocalizedText mode={mode} value={uiText('motto')} inline={mode === 'both'} /></p>
-              <p className="epigraph-original" lang="zh-CN">{profile.epigraph.zh}</p>
-              {mode !== 'zh' && <p className="epigraph-translation" lang="en">{profile.epigraph.en}</p>}
-              <cite><LocalizedText mode={mode} value={profile.epigraphSource} inline={mode === 'both'} /></cite>
-            </blockquote>
             <p className="bio"><LocalizedText labeled={mode === 'both'} mode={mode} value={profile.bio} /></p>
             {profile.cvHref && (
               <a className="text-link" href={profile.cvHref}>
