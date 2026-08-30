@@ -69,9 +69,11 @@ h1 { max-width: 840px; font-size: clamp(68px, 11vw, 164px); line-height: .82; ov
 .localized-zh { font-family: 'Songti SC', 'Noto Serif SC', 'STSong', var(--serif); }
 .hero-epigraph { max-width: 54ch; margin: 28px 0 0; padding: 18px 0 0 20px; border-top: 1px solid color-mix(in srgb, var(--accent) 28%, var(--line)); border-left: 2px solid var(--jade); }
 .hero-epigraph p { margin-bottom: 9px; }
+.hero-epigraph .epigraph-label { margin-bottom: 12px; color: var(--jade); font-family: var(--sans); font-size: 9px; font-weight: 700; letter-spacing: .13em; line-height: 1; text-transform: uppercase; }
 .hero-epigraph .epigraph-original { color: var(--accent-strong); font-family: 'Songti SC', 'Noto Serif SC', 'STSong', var(--serif); font-size: 16px; letter-spacing: .055em; line-height: 1.8; }
 .hero-epigraph .epigraph-translation { max-width: 50ch; color: var(--muted); font-family: var(--serif); font-size: 12px; font-style: italic; line-height: 1.65; }
 .hero-epigraph cite { color: var(--muted); font-size: 10px; font-style: normal; letter-spacing: .07em; text-transform: uppercase; }
+.hero-epigraph + .bio { margin-top: 24px; }
 .hero-links { display: flex; flex-wrap: wrap; gap: 18px; margin-top: 32px; }
 .hero-links a { padding-bottom: 4px; border-bottom: 1px solid var(--line); color: var(--muted); font-size: 12px; transition: border-color .2s ease, color .2s ease; }
 .hero-links a:hover { border-color: var(--ink); color: var(--ink); }
