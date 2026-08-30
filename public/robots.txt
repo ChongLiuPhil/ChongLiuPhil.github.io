@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://chongliuphil.github.io/sitemap.xml
