@@ -110,7 +110,10 @@ export default function Home() {
   }));
 
   return (
-    <main className={`language-mode-${mode}`}>
+    <div className={`language-mode-${mode}`}>
+      <a className="skip-link" href="#main-content">
+        <LocalizedText mode={mode} value={uiText('skip')} inline={mode === 'both'} />
+      </a>
       <header className="site-header">
         <a className="wordmark" href="#top" aria-label="Chong Liu, 刘崇">
           <LocalizedText mode={mode} value={profile.name} inline={mode === 'both'} />
@@ -133,6 +136,7 @@ export default function Home() {
         ))}
       </nav>
 
+      <main id="main-content" tabIndex={-1}>
       <section className="hero" id="top" aria-labelledby="page-title">
         <div className="hero-meta">
           <span className="status-dot" aria-hidden="true" />
@@ -319,12 +323,13 @@ export default function Home() {
           )}
         </div>
       </section>
+      </main>
 
       <footer>
         <span><LocalizedText mode={mode} value={{ en: 'Chong Liu', zh: '刘崇' }} inline={mode === 'both'} /></span>
         <span><LocalizedText mode={mode} value={uiText('updated')} inline={mode === 'both'} /></span>
         <a href="#top">↑ <LocalizedText mode={mode} value={{ en: 'Top', zh: '顶部' }} /></a>
       </footer>
-    </main>
+    </div>
   );
 }
