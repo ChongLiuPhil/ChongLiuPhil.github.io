@@ -182,6 +182,9 @@ export default function Home() {
           <p className="eyebrow"><LocalizedText mode={mode} value={uiText('researchEyebrow')} inline={mode === 'both'} /></p>
           <h2 id="research-title"><LocalizedText mode={mode} value={uiText('researchTitle')} /></h2>
         </div>
+        <p className="research-overview">
+          <LocalizedText labeled={mode === 'both'} mode={mode} value={profile.researchOverview} />
+        </p>
         <ol className="research-list">
           {academicContent.researchAreas.map((area) => (
             <li id={`area-${area.id}`} key={area.id}>

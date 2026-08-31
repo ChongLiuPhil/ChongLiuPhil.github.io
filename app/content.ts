@@ -40,6 +40,10 @@ export const academicContent = {
       zh: '刘崇的研究兴趣涵盖认识论、科学哲学、语言哲学、因果关系与意识，关注这些领域之间相互连接的基础问题。',
       en: 'Chong Liu’s interests span epistemology, philosophy of science, philosophy of language, causation, and consciousness, with attention to the foundational questions connecting these fields.',
     },
+    researchOverview: {
+      zh: '我的研究以一组彼此关联的问题为线索：信念在什么条件下构成知识，解释何以具有科学性，语言与概念如何触及世界，因果结构如何支撑解释，以及主观经验与第三人称描述之间具有何种关系。我尤其关注这些问题交汇之处，因为知识、解释、指称、因果与意识并非彼此孤立，而是共同塑造我们如何理解现实。',
+      en: 'My research is organized around a connected set of questions: under what conditions belief amounts to knowledge; what makes an explanation scientific; how language and concepts reach the world; how causal structure supports explanation; and how subjective experience relates to third-person description. I am especially interested in where these questions intersect, because knowledge, explanation, reference, causation, and consciousness jointly shape how reality becomes intelligible to us.',
+    },
     epigraph: {
       zh: '桂棹兮兰桨，击空明兮溯流光。渺渺兮予怀，望美人兮天一方。',
       en: 'With cassia oars and magnolia sweeps, I strike the lucent void and trace the streaming light. Far-reaching are my thoughts; I gaze toward the one I long for at the edge of the sky.',
