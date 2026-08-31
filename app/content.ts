@@ -30,6 +30,7 @@ export const academicContent = {
   isSample: false,
   profile: {
     name: { zh: '刘崇', en: 'Chong Liu' },
+    alternateNames: ['刘崇', 'John'],
     role: { zh: '哲学', en: 'Philosophy' },
     affiliation: null as BilingualText | null,
     statement: {
