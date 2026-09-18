@@ -289,7 +289,7 @@ export default function Home() {
           <div className="section-intro compact-intro">
             <p className="section-number">{experienceNumber}</p>
             <div className="section-heading">
-              <p className="eyebrow"><LocalizedText mode={mode} value={uiText('experienceEyebrow')> inline={mode === 'both'} /></p>
+              <p className="eyebrow"><LocalizedText mode={mode} value={uiText('experienceEyebrow')} inline={mode === 'both'} /></p>
               <h2 id="experience-title"><LocalizedText mode={mode} value={uiText('experienceTitle')} /></h2>
             </div>
           </div>
