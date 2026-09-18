@@ -97,10 +97,12 @@ export default function Home() {
   const mode = useSyncExternalStore<DisplayMode>(subscribeToDisplayMode, readDisplayMode, () => 'en');
   const profile = academicContent.profile;
   const hasContactLinks = Boolean(profile.email || profile.externalLinks.length);
+  const hasPublicEducation = academicContent.publicEducationProjects.length > 0;
   const hasExperience = academicContent.experience.length > 0;
   const hasCredentials = academicContent.education.length > 0 || academicContent.honors.length > 0;
-  const credentialsNumber = hasExperience ? '04' : '03';
-  const contactNumber = String(3 + Number(hasExperience) + Number(hasCredentials)).padStart(2, '0');
+  const experienceNumber = hasPublicEducation ? '04' : '03';
+  const credentialsNumber = String(3 + Number(hasPublicEducation) + Number(hasExperience)).padStart(2, '0');
+  const contactNumber = String(3 + Number(hasPublicEducation) + Number(hasExperience) + Number(hasCredentials)).padStart(2, '0');
 
   useEffect(() => {
     document.documentElement.lang = mode === 'zh' ? 'zh-CN' : 'en';
@@ -246,6 +248,41 @@ export default function Home() {
           <p className="publication-empty"><LocalizedText labeled={mode === 'both'} mode={mode} value={uiText('publicationsPending')} /></p>
         )}
       </section>
+
+      {hasPublicEducation && (
+        <section className="section publications-section" id="public-education" aria-labelledby="public-education-title">
+          <div className="section-intro">
+            <p className="section-number">{experienceNumber}</p>
+            <div className="section-heading">
+              <p className="eyebrow"><LocalizedText mode={mode} value={uiText('publicEducationEyebrow')} inline={mode === 'both'} /></p>
+              <h2 id="public-education-title"><LocalizedText mode={mode} value={uiText('publicEducationTitle')} /></h2>
+            </div>
+            <p className="section-description"><LocalizedText labeled={mode === 'both'} mode={mode} value={uiText('publicEducationIntro')} /></p>
+          </div>
+          <div className="publication-list">
+            {academicContent.publicEducationProjects.map((project) => (
+              <article className="publication" id={`public-education-${project.id}`} key={project.id}>
+                <div className="publication-meta">
+                  <span>{project.year}</span>
+                </div>
+                <div>
+                  <h3><LocalizedText mode={mode} value={project.title} /></h3>
+                  <p className="venue"><LocalizedText labeled={mode === 'both'} mode={mode} value={project.description} /></p>
+                </div>
+                {project.links.length > 0 && (
+                  <div className="publication-links">
+                    {project.links.map((link) => (
+                      <a href={link.href} key={link.href} rel="noreferrer" target="_blank">
+                        <LocalizedText mode={mode} value={link.label} inline={mode === 'both'} /> ↗
+                      </a>
+                    ))}
+                  </div>
+                )}
+              </article>
+            ))}
+          </div>
+        </section>
+      )}
 
       {hasExperience && (
         <section className="section experience-section" id="experience" aria-labelledby="experience-title">
