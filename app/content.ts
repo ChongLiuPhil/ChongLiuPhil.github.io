@@ -17,6 +17,14 @@ export type Publication = {
   links: PublicationLink[];
 };
 
+export type PublicEducationProject = {
+  id: string;
+  year: string;
+  title: BilingualText;
+  description: BilingualText;
+  links: PublicationLink[];
+};
+
 export type TimelineItem = {
   id: string;
   period: string;
@@ -124,29 +132,6 @@ export const academicContent = {
   ],
   publications: [
     {
-      id: 'epistemology-textbook',
-      year: '2026',
-      featured: true,
-      title: { zh: '《我们如何知道？——问题驱动的认识论》', en: 'How Do We Know? — A Problem-Driven Epistemology' },
-      authors: 'Chong Liu · 刘崇',
-      venue: { zh: '开放网络教材', en: 'Open web textbook' },
-      links: [
-        { label: { zh: '在线阅读', en: 'Read online' }, href: 'https://chongliuphil.github.io/epistemology-textbook/' },
-        { label: { zh: 'GitHub', en: 'GitHub' }, href: 'https://github.com/ChongLiuPhil/epistemology-textbook' },
-      ],
-    },
-    {
-      id: 'causal-inference-reader',
-      year: '2026',
-      featured: true,
-      title: { zh: '《因果推理深度读本》', en: 'Causal Inference Reader' },
-      authors: 'Chong Liu · 刘崇',
-      venue: { zh: '开放研究型读本', en: 'Open research reader' },
-      links: [
-        { label: { zh: 'GitHub', en: 'GitHub' }, href: 'https://github.com/ChongLiuPhil/causal-inference-reader' },
-      ],
-    },
-    {
       id: 'discourse-atlas',
       year: '2026',
       featured: true,
@@ -192,6 +177,33 @@ export const academicContent = {
       ],
     },
   ] as Publication[],
+  publicEducationProjects: [
+    {
+      id: 'epistemology-textbook',
+      year: '2026',
+      title: { zh: '《我们如何知道？——问题驱动的认识论》', en: 'How Do We Know? — A Problem-Driven Epistemology' },
+      description: {
+        zh: '面向学习者持续开放的认识论教材项目，属于公益性教育与知识共享工作，不作为代表性研究成果列示。',
+        en: 'An openly accessible epistemology textbook project for learners. It is presented as a public-education and knowledge-sharing initiative rather than as a representative research output.',
+      },
+      links: [
+        { label: { zh: '在线阅读', en: 'Read online' }, href: 'https://chongliuphil.github.io/epistemology-textbook/' },
+        { label: { zh: 'GitHub', en: 'GitHub' }, href: 'https://github.com/ChongLiuPhil/epistemology-textbook' },
+      ],
+    },
+    {
+      id: 'causal-inference-reader',
+      year: '2026',
+      title: { zh: '《因果推理深度读本》', en: 'Causal Inference Reader' },
+      description: {
+        zh: '面向高年级本科生与研究生的开放自学读本，属于公益性教育与学习资源建设，不作为代表性研究成果列示。',
+        en: 'An open self-study reader for advanced undergraduate and graduate learners. It is a public-education and learning-resource project rather than a representative research output.',
+      },
+      links: [
+        { label: { zh: 'GitHub', en: 'GitHub' }, href: 'https://github.com/ChongLiuPhil/causal-inference-reader' },
+      ],
+    },
+  ] as PublicEducationProject[],
   experience: [] as TimelineItem[],
   education: [] as TimelineItem[],
   honors: [] as Array<{ year: string; title: BilingualText }>,
@@ -204,6 +216,7 @@ export const interfaceCopy = {
     nav: [
       { label: '研究', href: '#research' },
       { label: '公开研究', href: '#publications' },
+      { label: '公益教育', href: '#public-education' },
       { label: '联系', href: '#contact' },
     ],
     switchLanguage: 'Switch to English',
@@ -212,10 +225,13 @@ export const interfaceCopy = {
     scroll: '向下浏览',
     researchEyebrow: '研究方向',
     researchTitle: '以问题为起点，以证据为方法',
-    publicationsEyebrow: '公开研究与写作',
-    publicationsTitle: '公开项目与研究成果',
-    publicationsIntro: '以下条目仅列出已经公开的研究、教材、协议与工具；未公开项目只在研究方向层面概括，不展示其原创论点或未发表结论。',
+    publicationsEyebrow: '公开研究',
+    publicationsTitle: '公开研究项目与工具',
+    publicationsIntro: '这里只列出已经公开、可以作为研究项目或研究方法工作的内容。未公开项目只在研究方向层面概括，不展示其原创论点或未发表结论。',
     publicationsPending: '公开研究项目将陆续添加',
+    publicEducationEyebrow: '公益教育',
+    publicEducationTitle: '开放读本与学习资源',
+    publicEducationIntro: '这些项目主要服务于学习者与知识共享，不作为代表性研究成果或原创学术贡献列示。',
     featured: '代表作',
     experienceEyebrow: '学术经历',
     experienceTitle: '研究、教学与合作',
@@ -237,6 +253,7 @@ export const interfaceCopy = {
     nav: [
       { label: 'Research', href: '#research' },
       { label: 'Public Work', href: '#publications' },
+      { label: 'Public Education', href: '#public-education' },
       { label: 'Contact', href: '#contact' },
     ],
     switchLanguage: '切换至中文',
@@ -245,10 +262,13 @@ export const interfaceCopy = {
     scroll: 'Scroll to explore',
     researchEyebrow: 'Research agenda',
     researchTitle: 'Questions first. Evidence always.',
-    publicationsEyebrow: 'Public research & writing',
-    publicationsTitle: 'Public projects and research outputs',
-    publicationsIntro: 'Only already-public research, textbooks, protocols, and tools are listed here. Unpublished projects are represented only at the level of broad research areas and questions, without exposing original arguments or unpublished conclusions.',
+    publicationsEyebrow: 'Public research',
+    publicationsTitle: 'Public research projects and tools',
+    publicationsIntro: 'This section lists only already-public work that belongs to research projects or research-methodology development. Unpublished projects are represented only at the level of broad fields and research questions, without exposing original arguments or unpublished conclusions.',
     publicationsPending: 'Public research projects will be added over time',
+    publicEducationEyebrow: 'Public education',
+    publicEducationTitle: 'Open readers and learning resources',
+    publicEducationIntro: 'These projects are intended primarily for learners and public knowledge-sharing. They are not presented as representative research outputs or original scholarly contributions.',
     featured: 'Selected',
     experienceEyebrow: 'Academic experience',
     experienceTitle: 'Research, teaching, and collaboration',
