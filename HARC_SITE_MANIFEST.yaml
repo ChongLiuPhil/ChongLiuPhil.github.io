@@ -1,0 +1,49 @@
+harc_site:
+  profile: "HARC-compatible public website project"
+  version: "0.1"
+  repository_role: "public-academic-homepage"
+  authoritative_store: "github"
+  default_branch: "main"
+
+  language:
+    documentation_canonical: "zh-CN"
+    documentation_mirror: "en"
+    site_content_model: "paired-atomic-bilingual"
+    rule: "For substantive public-facing content changes, update zh and en together in the same work cycle."
+
+  public_boundary:
+    repository_is_public: true
+    private_sources_may_be_consulted: true
+    private_material_may_be_copied_automatically: false
+    explicit_publication_approval_required: true
+    private_coordination_repository: "ChongLiuPhil/academic-vault"
+
+  source_of_truth:
+    public_content: "app/content.ts"
+    presentation: "app/page.tsx"
+    styles: "app/globals.css"
+    deployment: ".github/workflows/deploy-pages.yml"
+    agent_contract:
+      canonical: "AGENTS.zh-CN.md"
+      mirror: "AGENTS.md"
+    collaboration_protocol:
+      canonical: "docs/COLLABORATION_PROTOCOL.zh-CN.md"
+      mirror: "docs/COLLABORATION_PROTOCOL.md"
+
+  required_read_order:
+    - "HARC_SITE_MANIFEST.yaml"
+    - "AGENTS.zh-CN.md"
+    - "docs/COLLABORATION_PROTOCOL.zh-CN.md"
+    - "README.zh-CN.md"
+    - "app/content.ts"
+    - "package.json"
+    - ".github/workflows/deploy-pages.yml"
+
+  invariants:
+    - "Anything committed to this repository is public."
+    - "Private research material is never staged here."
+    - "Public content changes require explicit publication intent."
+    - "Bilingual public-facing content changes are atomic."
+    - "Stable IDs in app/content.ts must be preserved unless a migration is deliberate."
+    - "Run npm run check before treating a structural change as complete."
+    - "High-impact changes should use a branch and pull request."
