@@ -254,7 +254,7 @@ export default function Home() {
           <div className="section-intro">
             <p className="section-number">03</p>
             <div className="section-heading">
-              <p className="eyebrow"><LocalizedText mode={mode} value={uiText('publicEducationEyebrow')> inline={mode === 'both'} /></p>
+              <p className="eyebrow"><LocalizedText mode={mode} value={uiText('publicEducationEyebrow')} inline={mode === 'both'} /></p>
               <h2 id="public-education-title"><LocalizedText mode={mode} value={uiText('publicEducationTitle')} /></h2>
             </div>
             <p className="section-description"><LocalizedText labeled={mode === 'both'} mode={mode} value={uiText('publicEducationIntro')} /></p>
