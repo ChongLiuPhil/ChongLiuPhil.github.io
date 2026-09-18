@@ -30,7 +30,7 @@ npm ci
 npm run check
 ```
 
-`npm run check` 会依次执行 lint 和生产构建。
+`npm run check` 会依次执行 lint、公开内容语义校验和生产构建。语义校验会检查稳定 ID、双语字段、导航对应关系、研究方向编号与公开链接等不变量。
 
 ## 发布
 

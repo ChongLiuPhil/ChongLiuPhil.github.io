@@ -1,9 +1,16 @@
 harc_site:
   profile: "HARC-compatible public website project"
-  version: "0.1"
+  version: "0.2"
   repository_role: "public-academic-homepage"
   authoritative_store: "github"
   default_branch: "main"
+
+  upstream_harc:
+    repository: "ChongLiuPhil/Human-AI-Research-Collaboration-Protocol"
+    protocol_version: "0.2.0-draft"
+    reviewed_commit: "4b881ab6fcc4f2fcf981cd7179cbe2fb6b2b1d93"
+    inheritance: "review-before-adopt"
+    automatic_rule_inheritance: false
 
   language:
     documentation_canonical: "zh-CN"
@@ -21,7 +28,9 @@ harc_site:
   source_of_truth:
     public_content: "app/content.ts"
     presentation: "app/page.tsx"
+    site_metadata: "app/layout.tsx"
     styles: "app/globals.css"
+    content_validation: "scripts/validate-content.mjs"
     deployment: ".github/workflows/deploy-pages.yml"
     agent_contract:
       canonical: "AGENTS.zh-CN.md"
@@ -36,8 +45,16 @@ harc_site:
     - "docs/COLLABORATION_PROTOCOL.zh-CN.md"
     - "README.zh-CN.md"
     - "app/content.ts"
+    - "app/layout.tsx"
     - "package.json"
     - ".github/workflows/deploy-pages.yml"
+
+  revision_policy:
+    read_latest_before_high_impact_action: true
+    read_latest_before_write: true
+    stale_after_write: true
+    invalidate_touched_cache_after_write: true
+    conflict_state: "REVISION-CONFLICT"
 
   invariants:
     - "Anything committed to this repository is public."
@@ -45,5 +62,7 @@ harc_site:
     - "Public content changes require explicit publication intent."
     - "Bilingual public-facing content changes are atomic."
     - "Stable IDs in app/content.ts must be preserved unless a migration is deliberate."
-    - "Run npm run check before treating a structural change as complete."
+    - "Public SEO and structured metadata should derive from app/content.ts where practical."
+    - "Run npm run check before treating a structural or content change as complete."
     - "High-impact changes should use a branch and pull request."
+    - "Session copies are non-authoritative caches; GitHub repository state outranks chat memory."
