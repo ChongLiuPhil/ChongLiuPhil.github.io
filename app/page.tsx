@@ -252,9 +252,9 @@ export default function Home() {
       {hasPublicEducation && (
         <section className="section publications-section" id="public-education" aria-labelledby="public-education-title">
           <div className="section-intro">
-            <p className="section-number">{experienceNumber}</p>
+            <p className="section-number">03</p>
             <div className="section-heading">
-              <p className="eyebrow"><LocalizedText mode={mode} value={uiText('publicEducationEyebrow')} inline={mode === 'both'} /></p>
+              <p className="eyebrow"><LocalizedText mode={mode} value={uiText('publicEducationEyebrow')> inline={mode === 'both'} /></p>
               <h2 id="public-education-title"><LocalizedText mode={mode} value={uiText('publicEducationTitle')} /></h2>
             </div>
             <p className="section-description"><LocalizedText labeled={mode === 'both'} mode={mode} value={uiText('publicEducationIntro')} /></p>
@@ -287,9 +287,9 @@ export default function Home() {
       {hasExperience && (
         <section className="section experience-section" id="experience" aria-labelledby="experience-title">
           <div className="section-intro compact-intro">
-            <p className="section-number">03</p>
+            <p className="section-number">{experienceNumber}</p>
             <div className="section-heading">
-              <p className="eyebrow"><LocalizedText mode={mode} value={uiText('experienceEyebrow')} inline={mode === 'both'} /></p>
+              <p className="eyebrow"><LocalizedText mode={mode} value={uiText('experienceEyebrow')> inline={mode === 'both'} /></p>
               <h2 id="experience-title"><LocalizedText mode={mode} value={uiText('experienceTitle')} /></h2>
             </div>
           </div>
