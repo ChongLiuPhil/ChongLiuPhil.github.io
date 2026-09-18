@@ -1,10 +1,6 @@
 # Chong Liu — Academic Homepage
 
-<!-- bilingual-home-intro -->
-> **English:** The source repository for Chong Liu’s bilingual academic website, presenting a philosophy profile, research agenda, publications, and contact information in English and Chinese.
->
-> **中文：** 刘崇双语学术网站的源代码仓库，以中英文呈现哲学研究简介、研究方向、论文成果与联系方式。
-<!-- /bilingual-home-intro -->
+[English](README.md) | [中文](README.zh-CN.md)
 
 The source for [chongliuphil.github.io](https://chongliuphil.github.io), a bilingual academic homepage focused on epistemology, philosophy of science, philosophy of language, causation, and consciousness.
 
@@ -32,6 +28,6 @@ statement: {
 
 Research areas, publications, and timeline entries use stable `id` values so that a future instruction can target one bilingual block without relying on its position. When editing a block, update both `en` and `zh` whenever possible to prevent content drift.
 
-The page offers three presentation modes: `English`, `中文`, and `Both`. English is the default; the visitor's last choice is saved on their device. `Both` stacks the paired passages vertically rather than placing them in columns.
+The page offers three presentation modes: `English`, `中文`, and `Both`. On a visitor's first visit, the site uses the browser's preferred language: Chinese when the preferred language begins with `zh`, and English otherwise. If browser-language detection is unavailable or ambiguous, English is the fallback. A visitor's explicit choice is saved locally and takes precedence on later visits.
 
 For publications, set `originalLanguage` to `en` or `zh`. Bibliographic titles and venues remain in their original language in single-language modes, while `Both` can expose the paired translation for review.
