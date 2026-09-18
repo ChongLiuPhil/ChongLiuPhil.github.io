@@ -2,7 +2,7 @@
 
 [English](README.md) | [中文](README.zh-CN.md)
 
-The source for [chongliuphil.github.io](https://chongliuphil.github.io), a bilingual academic homepage focused on epistemology, philosophy of science, philosophy of language, causation, and consciousness.
+The source for [chongliuphil.github.io](https://chongliuphil.github.io), a bilingual academic homepage for philosophical research spanning epistemology, causation and scientific explanation, language and reference, consciousness, AI and epistemic agency, formal reasoning, and research methodology. The public-work section lists only already-public projects; unpublished research is represented only at the level of broad fields and research questions.
 
 ## Local preview
 

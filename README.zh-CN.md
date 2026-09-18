@@ -2,7 +2,7 @@
 
 [English](README.md) | [中文](README.zh-CN.md)
 
-这是 [chongliuphil.github.io](https://chongliuphil.github.io) 的源代码仓库。该网站是一个中英文双语学术主页，主要展示认识论、科学哲学、语言哲学、因果关系与意识等研究方向。
+这是 [chongliuphil.github.io](https://chongliuphil.github.io) 的源代码仓库。该网站是一个中英文双语学术主页，展示认识论、因果与科学解释、语言与指称、意识、AI 与认识主体性、形式推理与研究方法等哲学研究方向。公开研究区只列出已经公开的项目；尚未公开的研究只在领域和研究问题层面概括，不展示原创论点或未发表结论。
 
 ## 本地预览
 
