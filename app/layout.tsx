@@ -3,27 +3,39 @@ import { academicContent } from './content';
 import './globals.css';
 
 const siteUrl = 'https://chongliuphil.github.io';
+const profile = academicContent.profile;
+const siteTitle = `${profile.name.en} ${profile.name.zh} — ${profile.role.en}`;
+const siteDescription = profile.statement.en;
+const researchKeywords = academicContent.researchAreas.flatMap((area) => [area.title.en, area.title.zh]);
+const siteKeywords = Array.from(
+  new Set([
+    profile.name.en,
+    profile.name.zh,
+    ...profile.alternateNames,
+    ...researchKeywords,
+  ]),
+);
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
-  title: 'Chong Liu 刘崇 — Philosophy',
-  description: 'Chong Liu’s bilingual academic homepage, focused on epistemology, philosophy of science, philosophy of language, causation, and consciousness.',
-  keywords: ['Chong Liu', '刘崇', 'John', 'epistemology', '认识论', 'philosophy of science', '科学哲学', 'philosophy of language', '语言哲学', 'causation', '因果关系', 'consciousness', '意识'],
-  authors: [{ name: 'Chong Liu', url: siteUrl }],
-  creator: 'Chong Liu',
+  title: siteTitle,
+  description: siteDescription,
+  keywords: siteKeywords,
+  authors: [{ name: profile.name.en, url: siteUrl }],
+  creator: profile.name.en,
   alternates: { canonical: '/' },
   icons: { icon: '/favicon.png' },
   robots: { index: true, follow: true },
   openGraph: {
     type: 'website',
-    title: 'Chong Liu 刘崇 — Philosophy',
-    description: 'Epistemology · Philosophy of Science · Philosophy of Language · Causation · Consciousness',
-    images: [{ url: '/og-v2.png', width: 1731, height: 909, alt: 'Chong Liu — Philosophy' }],
+    title: siteTitle,
+    description: siteDescription,
+    images: [{ url: '/og-v2.png', width: 1731, height: 909, alt: `${profile.name.en} — ${profile.role.en}` }],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Chong Liu 刘崇 — Philosophy',
-    description: 'Epistemology · Philosophy of Science · Philosophy of Language · Causation · Consciousness',
+    title: siteTitle,
+    description: siteDescription,
     images: ['/og-v2.png'],
   },
 };
@@ -31,14 +43,14 @@ export const metadata: Metadata = {
 const personJsonLd = {
   '@context': 'https://schema.org',
   '@type': 'Person',
-  name: academicContent.profile.name.en,
-  alternateName: academicContent.profile.alternateNames,
+  name: profile.name.en,
+  alternateName: profile.alternateNames,
   url: siteUrl,
-  email: `mailto:${academicContent.profile.email}`,
+  email: `mailto:${profile.email}`,
   image: `${siteUrl}/og-v2.png`,
-  description: academicContent.profile.bio.en,
-  sameAs: academicContent.profile.externalLinks.map((link) => link.href),
-  knowsAbout: academicContent.researchAreas.flatMap((area) => [area.title.en, area.title.zh]),
+  description: profile.bio.en,
+  sameAs: profile.externalLinks.map((link) => link.href),
+  knowsAbout: researchKeywords,
   mainEntityOfPage: siteUrl,
 };
 
