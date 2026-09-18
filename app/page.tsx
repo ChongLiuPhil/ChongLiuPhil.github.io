@@ -10,7 +10,10 @@ const DISPLAY_MODE_EVENT = 'chong-liu-display-mode-change';
 
 function readDisplayMode(): DisplayMode {
   const savedMode = window.localStorage.getItem(DISPLAY_MODE_KEY);
-  return savedMode === 'zh' || savedMode === 'both' ? savedMode : 'en';
+  if (savedMode === 'en' || savedMode === 'zh' || savedMode === 'both') return savedMode;
+
+  const browserLanguage = window.navigator.languages?.[0] ?? window.navigator.language ?? '';
+  return browserLanguage.toLowerCase().startsWith('zh') ? 'zh' : 'en';
 }
 
 function subscribeToDisplayMode(onStoreChange: () => void) {
