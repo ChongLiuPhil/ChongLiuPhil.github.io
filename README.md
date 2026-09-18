@@ -1,6 +1,12 @@
 # Chong Liu — Academic Homepage
 
-The source for [chongliuphil.github.io](https://chongliuphil.github.io), an English-language academic homepage focused on epistemology, philosophy of science, philosophy of language, causation, and consciousness.
+<!-- bilingual-home-intro -->
+> **English:** The source repository for Chong Liu’s bilingual academic website, presenting a philosophy profile, research agenda, publications, and contact information in English and Chinese.
+>
+> **中文：** 刘崇双语学术网站的源代码仓库，以中英文呈现哲学研究简介、研究方向、论文成果与联系方式。
+<!-- /bilingual-home-intro -->
+
+The source for [chongliuphil.github.io](https://chongliuphil.github.io), a bilingual academic homepage focused on epistemology, philosophy of science, philosophy of language, causation, and consciousness.
 
 ## Local preview
 
