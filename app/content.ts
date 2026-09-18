@@ -134,7 +134,7 @@ export const academicContent = {
     {
       id: 'discourse-atlas',
       year: '2026',
-      featured: true,
+      featured: false,
       title: { zh: 'Discourse Atlas：复杂文本的论证结构重建', en: 'Discourse Atlas: Argument-Structure Reconstruction for Complex Texts' },
       authors: 'Chong Liu · 刘崇',
       venue: { zh: '开放研究协议与工具', en: 'Open research protocol and toolkit' },
