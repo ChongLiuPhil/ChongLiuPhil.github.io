@@ -30,7 +30,7 @@ npm ci
 npm run check
 ```
 
-`npm run check` runs lint followed by a production build.
+`npm run check` runs lint, semantic validation of public academic content, and a production build. The semantic validator checks stable IDs, bilingual fields, navigation parity, research-area numbering, and public links.
 
 ## Publishing
 
