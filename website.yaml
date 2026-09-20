@@ -1,0 +1,36 @@
+schema_version: 1
+publish: true
+project_id: academic-homepage
+
+language:
+  default: auto
+  fallback: en
+  supported: [en, zh]
+  detect_from_browser: true
+
+title:
+  zh: "刘崇学术主页"
+  en: "Chong Liu — Academic Homepage"
+
+status:
+  zh: "现有公开学术主页；当前 production provider 为 GitHub Pages，Cloudflare 仍为 planned target。"
+  en: "Existing public academic homepage; current production provider is GitHub Pages and Cloudflare remains a planned target."
+
+summary:
+  zh: "双语哲学研究学术主页；公开层只展示已经获准公开的项目与研究信息。"
+  en: "A bilingual academic homepage for philosophical research; the public layer contains only material already authorized for public presentation."
+
+areas: [epistemology, philosophy-of-science, ai-epistemic-agency, research-methodology]
+featured: false
+links:
+  - href: "https://chongliuphil.github.io/"
+    label:
+      zh: "公开主页"
+      en: "Public homepage"
+  - href: "https://github.com/ChongLiuPhil/ChongLiuPhil.github.io"
+    label:
+      zh: "GitHub 仓库"
+      en: "GitHub repository"
+
+publication_notes: >
+  publish=true records the already-existing authorized public homepage. It does not authorize additional private-project material. Current provider actual state remains GitHub Pages; the Vault's Cloudflare target remains planned and is not activated by this metadata.

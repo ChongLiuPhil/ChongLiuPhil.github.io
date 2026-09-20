@@ -1,0 +1,34 @@
+schema_version: 1
+id: academic-homepage
+repository: ChongLiuPhil/ChongLiuPhil.github.io
+
+title:
+  zh: "刘崇学术主页"
+  en: "Chong Liu — Academic Homepage"
+
+kind: public-academic-website
+status: active
+
+areas: [epistemology, philosophy-of-science, ai-epistemic-agency, research-methodology]
+topics: [academic-portfolio, public-presentation]
+
+source_of_truth:
+  site_manifest: "HARC_SITE_MANIFEST.yaml"
+  public_content: "app/content.ts"
+  presentation: "app/page.tsx"
+  site_metadata: "app/layout.tsx"
+  styles: "app/globals.css"
+  deployment: ".github/workflows/deploy-pages.yml"
+
+website:
+  metadata: website.yaml
+  default_publish: false
+  bilingual_homepage_required: true
+  readme_default_language: en
+  language_default: auto
+  language_fallback: en
+
+notes: >
+  Vault Interface metadata records the existing public boundary. It does not
+  authorize new publication, change current deployment/provider state, or
+  replace repository-native governance and product sources.
