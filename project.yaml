@@ -19,6 +19,17 @@ source_of_truth:
   site_metadata: "app/layout.tsx"
   styles: "app/globals.css"
   deployment: ".github/workflows/deploy-pages.yml"
+  ahicp_manifest: "AHICP_MANIFEST.yaml"
+  ahicp_context_interface: "AHICP_CONTEXT_INTERFACE.yaml"
+  project_stack: "project-stack.yaml"
+  publishing_contract: "publishing.yaml"
+
+current_stack:
+  protocol_entry: AHICP
+  ahicp_profile: public-presentation-layer
+  web_authorized: true
+  web_provider: github-pages
+  production_url: "https://chongliuphil.github.io/"
 
 website:
   metadata: website.yaml
