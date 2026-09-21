@@ -1,0 +1,59 @@
+ahicp:
+  protocol_name: "AI-Assisted Human Inquiry and Creation Protocol"
+  adopted_protocol_version: "0.3.0-draft"
+  adopted_protocol_commit: "ed5a60b1016497472072db108072ace59bcdb65d"
+  template_profile: "research-lite"
+  template_version: "0.3.1-draft"
+  template_source_commit: "02d0b3c02ca23073c760b6e0f761a468e0235a1c"
+  repository: "ChongLiuPhil/ChongLiuPhil.github.io"
+  canonical_language: "zh-CN"
+  mirror_language: "en"
+
+  compatibility:
+    legacy_manifest: "HARC_SITE_MANIFEST.yaml"
+    rule: "AHICP is the current protocol entry for repository collaboration; the existing HARC site manifest remains a valid compatibility and project-native public-site authority interface."
+
+  profile_deviations:
+    - id: "AHICP-HOME-DEV-001"
+      role: "authority"
+      local_rule: "Do not create research Content Core, Form Core, Framework Status, Argument Map, or private Working Memory in this public repository. Public content authority remains app/content.ts and presentation/deployment authority remains project-native."
+      human_basis: "Existing HARC site governance plus explicit 2026-09-21 account-wide Stack execution."
+    - id: "AHICP-HOME-DEV-002"
+      role: "publication"
+      local_rule: "This repository is already an authorized public presentation layer. Current production is GitHub Pages; publication approval for new private-project material remains upstream in Academic Vault and project-local public metadata."
+      human_basis: "Existing public homepage authorization and website.yaml publish=true."
+
+  bootstrap:
+    start_here:
+      canonical: "START_HERE.zh-CN.md"
+      mirror: "START_HERE.md"
+    context_interface: "AHICP_CONTEXT_INTERFACE.yaml"
+    session_context_bootstrap: "SESSION_CONTEXT_BOOTSTRAP.zh-CN.md"
+    agent_contract:
+      canonical: "AGENTS.zh-CN.md"
+      mirror: "AGENTS.md"
+
+  state:
+    legacy_site_manifest: "HARC_SITE_MANIFEST.yaml"
+    public_content: "app/content.ts"
+    presentation: "app/page.tsx"
+    site_metadata: "app/layout.tsx"
+    styles: "app/globals.css"
+    content_validation: "scripts/validate-content.mjs"
+    collaboration_protocol:
+      canonical: "docs/COLLABORATION_PROTOCOL.zh-CN.md"
+      mirror: "docs/COLLABORATION_PROTOCOL.md"
+    deployment: ".github/workflows/deploy-pages.yml"
+    portfolio_metadata: "project.yaml"
+    publication_metadata: "website.yaml"
+
+  invariants:
+    - "Anything committed to this repository is public."
+    - "Private research material is never staged here."
+    - "Explicit publication intent is required before adding or changing public material sourced from private projects."
+    - "Bilingual public-facing content changes are atomic."
+    - "app/content.ts remains the public academic content authority."
+    - "GitHub Pages remains the current production provider until a separately authorized cutover occurs."
+    - "Cloudflare remains a planned target only; Stack adoption does not activate it."
+    - "Repository state outranks chat or model memory."
+    - "Legacy HARC site paths remain valid until separately audited and retired."
