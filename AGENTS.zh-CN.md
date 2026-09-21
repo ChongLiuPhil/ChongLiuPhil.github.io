@@ -12,11 +12,13 @@
 
 按顺序读取：
 
-1. `HARC_SITE_MANIFEST.yaml`
-2. 本文件
-3. `docs/COLLABORATION_PROTOCOL.zh-CN.md`
-4. `README.zh-CN.md`
-5. 与任务直接相关的代码或内容文件
+1. `AHICP_MANIFEST.yaml`
+2. `AHICP_CONTEXT_INTERFACE.yaml`
+3. `HARC_SITE_MANIFEST.yaml`
+4. 本文件
+5. `docs/COLLABORATION_PROTOCOL.zh-CN.md`
+6. `README.zh-CN.md`
+7. 与任务直接相关的代码或内容文件
 
 如果任务涉及从私人研究库向主页增加项目或成果，还应读取私人 `academic-vault` 中对应的最新授权/公开元数据。私人仓库中的“存在”不等于允许公开。
 
@@ -94,3 +96,8 @@ npm run check
 当前采用的 HARC 上游版本与 revision 记录在 `HARC_SITE_MANIFEST.yaml`。HARC 未来升级不会自动改变本仓库规则；必须先审阅，再决定是否采用。
 
 长期研究 Working Memory、论证框架、未公开证据和私人任务计划应留在对应私人项目或 `academic-vault`。
+
+
+## 10. Current Stack
+
+AHICP 是当前协议入口；`HARC_SITE_MANIFEST.yaml` 继续作为兼容与项目原生 public-site governance 接口。PPF 映射既有 GitHub Pages 生产生命周期。采用 Stack 不新增公开内容，不授权私人研究材料进入主页，也不启动 Cloudflare cutover。
