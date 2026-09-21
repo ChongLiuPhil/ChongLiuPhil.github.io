@@ -1,0 +1,59 @@
+ahicp_context_interface:
+  version: "0.1-draft"
+  mode: "public-presentation-layer-adapter"
+  authoritative_store: "github"
+  canonical_language: "zh-CN"
+
+  control_plane:
+    manifest: "AHICP_MANIFEST.yaml"
+    legacy_site_manifest: "HARC_SITE_MANIFEST.yaml"
+    start_here: "START_HERE.zh-CN.md"
+    agent_contract: "AGENTS.zh-CN.md"
+    authoritative_session_copy: false
+
+  context_policy:
+    retrieval: "selective-on-demand"
+    cache_authority: "none"
+    read_latest_before_high_impact_action: true
+    read_latest_before_write: true
+    invalidate_touched_cache_after_write: true
+    write_through_repository: true
+
+  task_routes:
+    PUBLIC_CONTENT:
+      required:
+        - "app/content.ts"
+        - "AGENTS.zh-CN.md"
+        - "docs/COLLABORATION_PROTOCOL.zh-CN.md"
+      optional:
+        - "app/page.tsx"
+        - "app/layout.tsx"
+    PRESENTATION:
+      required:
+        - "app/page.tsx"
+        - "app/globals.css"
+        - "app/content.ts"
+    GOVERNANCE:
+      required:
+        - "AHICP_MANIFEST.yaml"
+        - "AHICP_ADOPTION.zh-CN.md"
+        - "HARC_SITE_MANIFEST.yaml"
+        - "AGENTS.zh-CN.md"
+        - "project.yaml"
+    PUBLICATION:
+      required:
+        - "publishing.yaml"
+        - "website.yaml"
+        - ".github/workflows/deploy-pages.yml"
+        - "docs/COLLABORATION_PROTOCOL.zh-CN.md"
+
+  external_private_authority:
+    repository: "ChongLiuPhil/academic-vault"
+    rule: "Consult only when a task explicitly requires approved private-project publication metadata; never copy private coordination state into this public repository."
+
+  failure_states:
+    - "CONTEXT-STALE"
+    - "REVISION-CONFLICT"
+    - "PUBLICATION-AUTHORIZATION-UNCLEAR"
+    - "BILINGUAL-SYNC-DEFECT"
+    - "PROVIDER-STATE-DRIFT"
