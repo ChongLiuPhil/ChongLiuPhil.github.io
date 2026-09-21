@@ -1,0 +1,55 @@
+schema: ppf/v0.1
+framework:
+  source: ChongLiuPhil/Personal-Publishing-Framework
+  adopted_version: 0.1.1-draft
+  adopted_commit: e660b48fb216c28c8faa1f0fe2d0816401e1de2c
+
+project:
+  id: academic-homepage
+  type: public-academic-homepage
+  title: "Chong Liu — Academic Homepage"
+
+source:
+  canonical: git
+  branch: main
+  visibility: public
+
+publication:
+  web:
+    format: html
+    mode: continuous
+    enabled: true
+    authorization_state: authorized
+    visibility: public
+    access:
+      mode: public
+      implementation: github-pages
+
+deployment:
+  web:
+    provider: github-pages
+    enabled: true
+    status: active-public-production
+    production_url: "https://chongliuphil.github.io/"
+    integration_state: PRODUCTION_ACTIVE
+    authorization_state: AUTHORIZED
+    cutover_state: ACTIVE
+    source: github-actions
+    workflow: ".github/workflows/deploy-pages.yml"
+    auto_deploy_on_main: true
+    pull_request_deploy: false
+    target:
+      provider: cloudflare-workers
+      status: planned
+      cutover_status: pending
+      production_url: null
+
+release:
+  require_explicit_release: true
+  continuous_web_is_release: true
+  release_gate: "approved public content merged to main"
+  note: "Automatic deployment follows main; publication judgment for new private-project material remains upstream and explicit."
+
+archive:
+  preserve_source: true
+  preserve_release_artifacts: true
