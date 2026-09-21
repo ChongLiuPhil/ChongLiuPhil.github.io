@@ -1,0 +1,30 @@
+name: Validate current Stack governance
+
+on:
+  pull_request:
+    branches: [main]
+  push:
+    branches: [main]
+    paths:
+      - "AHICP_*"
+      - "SESSION_CONTEXT_BOOTSTRAP*"
+      - "START_HERE*"
+      - "AGENTS*"
+      - "HARC_SITE_MANIFEST.yaml"
+      - "project-stack*.yaml"
+      - "publishing.yaml"
+      - "project.yaml"
+      - "website.yaml"
+      - "scripts/check_stack_state.py"
+      - ".github/workflows/validate-stack-governance.yml"
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Validate Stack and publication/provider boundary
+        run: python3 scripts/check_stack_state.py
