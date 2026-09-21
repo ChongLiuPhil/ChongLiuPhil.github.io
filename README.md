@@ -4,15 +4,17 @@
 
 The source for [chongliuphil.github.io](https://chongliuphil.github.io), a bilingual academic homepage for philosophical research spanning epistemology, causation and scientific explanation, language and reference, consciousness, AI and epistemic agency, formal reasoning, and research methodology. The public-work section lists only already-public projects; unpublished research is represented only at the level of broad fields and research questions.
 
-## AI / HARC collaboration entry point
+## AI / current Stack collaboration entry point
 
 This repository uses a lightweight HARC-compatible collaboration layer. Before substantive edits, a new AI agent or automated editor should read:
 
-1. `HARC_SITE_MANIFEST.yaml`
-2. `AGENTS.zh-CN.md`
-3. `docs/COLLABORATION_PROTOCOL.zh-CN.md`
-4. this README
-5. source/content files directly relevant to the task
+1. `AHICP_MANIFEST.yaml`
+2. `AHICP_CONTEXT_INTERFACE.yaml`
+3. `HARC_SITE_MANIFEST.yaml`
+4. `AGENTS.zh-CN.md`
+5. `docs/COLLABORATION_PROTOCOL.zh-CN.md`
+6. this README
+7. source/content files directly relevant to the task
 
 The homepage is a **public presentation layer**, not private research memory. When synchronizing from private projects or `academic-vault`, explicit publication intent is required and only curated public expressions should be written here.
 
