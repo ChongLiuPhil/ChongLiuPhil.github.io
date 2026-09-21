@@ -12,11 +12,13 @@ Private research material, unpublished arguments, private notes, peer-review mat
 
 Read, in order:
 
-1. `HARC_SITE_MANIFEST.yaml`
-2. this file / the Chinese canonical contract
-3. `docs/COLLABORATION_PROTOCOL.zh-CN.md`
-4. `README.zh-CN.md`
-5. files directly relevant to the task
+1. `AHICP_MANIFEST.yaml`
+2. `AHICP_CONTEXT_INTERFACE.yaml`
+3. `HARC_SITE_MANIFEST.yaml`
+4. this file / the Chinese canonical contract
+5. `docs/COLLABORATION_PROTOCOL.zh-CN.md`
+6. `README.zh-CN.md`
+7. files directly relevant to the task
 
 If the task publishes material from a private research repository, also read the latest authorization/public metadata in the private `academic-vault`. Existence in a private repository is not publication permission.
 
@@ -88,3 +90,8 @@ This repository adopts the HARC principles needed for a public website without c
 The reviewed upstream HARC version and revision are pinned in `HARC_SITE_MANIFEST.yaml`. Future HARC changes are not inherited automatically; review them before adoption.
 
 Long-term Working Memory, argument frameworks, unpublished evidence, and private task plans belong in the relevant private repositories or `academic-vault`.
+
+
+## 10. Current Stack
+
+AHICP is the current protocol entry; `HARC_SITE_MANIFEST.yaml` remains a compatibility and project-native public-site governance interface. PPF maps the existing GitHub Pages production lifecycle. Stack adoption neither publishes new material nor authorizes private research disclosure or a Cloudflare cutover.

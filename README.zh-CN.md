@@ -4,15 +4,17 @@
 
 这是 [chongliuphil.github.io](https://chongliuphil.github.io) 的源代码仓库。该网站是一个中英文双语学术主页，展示认识论、因果与科学解释、语言与指称、意识、AI 与认识主体性、形式推理与研究方法等哲学研究方向。公开研究区只列出已经公开的项目；尚未公开的研究只在领域和研究问题层面概括，不展示原创论点或未发表结论。
 
-## AI / HARC 协作入口
+## AI / current Stack 协作入口
 
 本仓库采用一个轻量的 HARC 兼容协作层。新的 AI Agent 或自动化编辑工具在进行实质性修改前，应先读取：
 
-1. `HARC_SITE_MANIFEST.yaml`
-2. `AGENTS.zh-CN.md`
-3. `docs/COLLABORATION_PROTOCOL.zh-CN.md`
-4. 本文件
-5. 与任务直接相关的源码或内容文件
+1. `AHICP_MANIFEST.yaml`
+2. `AHICP_CONTEXT_INTERFACE.yaml`
+3. `HARC_SITE_MANIFEST.yaml`
+4. `AGENTS.zh-CN.md`
+5. `docs/COLLABORATION_PROTOCOL.zh-CN.md`
+6. 本文件
+7. 与任务直接相关的源码或内容文件
 
 主页是**公开展示层**，不是私人研究记忆。需要从私人项目或 `academic-vault` 同步内容时，必须先有明确的公开意图，并只写入经过筛选的公开表达。
 
