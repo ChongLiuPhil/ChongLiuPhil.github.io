@@ -147,11 +147,11 @@ export const academicContent = {
       id: 'harc-protocol',
       year: '2026',
       featured: false,
-      title: { zh: '人—AI研究协作协议', en: 'Human–AI Research Collaboration Protocol' },
+      title: { zh: 'AI 辅助人类探究与创作协议（AHICP）', en: 'AI-Assisted Human Inquiry and Creation Protocol (AHICP)' },
       authors: 'Chong Liu · 刘崇',
       venue: { zh: '开放研究方法与协作协议', en: 'Open research-methodology and collaboration protocol' },
       links: [
-        { label: { zh: 'GitHub', en: 'GitHub' }, href: 'https://github.com/ChongLiuPhil/Human-AI-Research-Collaboration-Protocol' },
+        { label: { zh: 'GitHub', en: 'GitHub' }, href: 'https://github.com/ChongLiuPhil/AI-Assisted-Human-Inquiry-and-Creation-Protocol' },
       ],
     },
     {
@@ -187,7 +187,7 @@ export const academicContent = {
         en: 'An openly accessible epistemology textbook project for learners. It is presented as a public-education and knowledge-sharing initiative rather than as a representative research output.',
       },
       links: [
-        { label: { zh: '在线阅读', en: 'Read online' }, href: 'https://chongliuphil.github.io/epistemology-textbook/' },
+        { label: { zh: '在线阅读', en: 'Read online' }, href: 'https://epistemology-textbook.philosophy-research.workers.dev/' },
         { label: { zh: 'GitHub', en: 'GitHub' }, href: 'https://github.com/ChongLiuPhil/epistemology-textbook' },
       ],
     },
